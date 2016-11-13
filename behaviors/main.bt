@@ -20,7 +20,7 @@
             "1f141b84-2aeb-4be2-a7c9-7ad123edb03e",
             "4c7897a0-d82d-45ee-9f38-5063feb09bf4",
             "4c1b652a-ff1d-4a58-9a24-68c4a39bf818",
-            "a143a0fc-7763-4d62-a5d8-e297d43f1db0"
+            "201b3ecf-2be2-4450-89d8-5a4a45833906"
         ],
         "decorators": [],
         "options": {}
@@ -370,20 +370,6 @@
         "asset-pack": "core",
         "parent": 1
     },
-    "a143a0fc-7763-4d62-a5d8-e297d43f1db0": {
-        "id": "a143a0fc-7763-4d62-a5d8-e297d43f1db0",
-        "class": "TextToSpeech",
-        "name": "",
-        "options": {
-            "words": "Thanks you for your time. Have a great day!",
-            "onWord": [
-                "(word) => {",
-                "}"
-            ]
-        },
-        "asset-pack": "core",
-        "parent": 1
-    },
     "4c7897a0-d82d-45ee-9f38-5063feb09bf4": {
         "id": "4c7897a0-d82d-45ee-9f38-5063feb09bf4",
         "class": "PlayAnimation",
@@ -407,6 +393,31 @@
                 "(callback) => {",
                 "    var results = \"You got \" + notepad.numCorrect + \" out of the \" + notepad.numTotal + \" questions correct!\";",
                 "    callback(results);",
+                "}"
+            ],
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "201b3ecf-2be2-4450-89d8-5a4a45833906": {
+        "id": "201b3ecf-2be2-4450-89d8-5a4a45833906",
+        "class": "TextToSpeechJs",
+        "name": "",
+        "options": {
+            "getWords": [
+                "(callback) => {",
+                "    var results = notepad.numCorrect/notepad.numTotal;",
+                "    var response = \"\";",
+                "    if(results < 0.6) {",
+                "        response = \"Looks like you need some more practice. I still believe in you.\";",
+                "    } else {",
+                "        response = \"You did great. I'm am actually impressed, good job!\";",
+                "    }",
+                "    callback(response);",
                 "}"
             ],
             "onWord": [
