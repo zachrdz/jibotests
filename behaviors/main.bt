@@ -5,8 +5,22 @@
         "name": "",
         "asset-pack": "core",
         "children": [
+            "cd1ced1d-3594-4704-b90d-347a33167e35",
+            "324cf3a9-dd56-4b26-9aa1-73690c903e4c",
             "7ba80b5b-73b7-42ae-965b-1838aa9bd6a6",
-            "ae71f98d-18b5-4d70-b1f0-542e04447df1"
+            "e366a8c0-b392-49c9-b868-93be3d0d3044",
+            "25d37f90-99cb-4cf0-8342-5637e15bdc0d",
+            "119a4278-e0e5-4041-9a94-c9d79ca4951d",
+            "c6d06b5f-9e53-44ff-9c4a-efd586460f64",
+            "af3a4a96-6755-45fb-a52b-e376cb1abf26",
+            "f01cbc67-9881-4ab5-8a97-9523420a09e3",
+            "ac8c91ca-4ad1-4aa1-bf38-464ddef781de",
+            "01fe7d88-44cb-4e39-abeb-e69b020292a4",
+            "ae71f98d-18b5-4d70-b1f0-542e04447df1",
+            "1f141b84-2aeb-4be2-a7c9-7ad123edb03e",
+            "4c7897a0-d82d-45ee-9f38-5063feb09bf4",
+            "4c1b652a-ff1d-4a58-9a24-68c4a39bf818",
+            "a143a0fc-7763-4d62-a5d8-e297d43f1db0"
         ],
         "decorators": [],
         "options": {}
@@ -19,7 +33,7 @@
         "class": "TextToSpeech",
         "name": "",
         "options": {
-            "words": "Hello World!",
+            "words": "Hello there!",
             "onWord": [
                 "(word) => {",
                 "}"
@@ -36,6 +50,367 @@
             "animPath": "greeting.keys",
             "config": [
                 "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "cd1ced1d-3594-4704-b90d-347a33167e35": {
+        "id": "cd1ced1d-3594-4704-b90d-347a33167e35",
+        "class": "Subtree",
+        "name": "",
+        "options": {
+            "behaviorPath": "idle.bt",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1,
+        "decorators": [
+            "7ead526f-1b02-45d1-b5b5-154922d012be"
+        ]
+    },
+    "7ead526f-1b02-45d1-b5b5-154922d012be": {
+        "id": "7ead526f-1b02-45d1-b5b5-154922d012be",
+        "class": "SucceedOnEmbedded",
+        "name": "",
+        "options": {
+            "rule": "hey_jibo",
+            "onResult": [
+                "(listener) => {",
+                "\tlistener.on('hey-jibo', function(asrResult, speakerIds) {",
+                "",
+                "\t});",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "e366a8c0-b392-49c9-b868-93be3d0d3044": {
+        "id": "e366a8c0-b392-49c9-b868-93be3d0d3044",
+        "class": "Subtree",
+        "name": "",
+        "options": {
+            "behaviorPath": "idle.bt",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1,
+        "decorators": [
+            "1b7b93e9-5df6-47bb-897b-cfabfb2f1563"
+        ]
+    },
+    "1b7b93e9-5df6-47bb-897b-cfabfb2f1563": {
+        "id": "1b7b93e9-5df6-47bb-897b-cfabfb2f1563",
+        "class": "SucceedOnListen",
+        "name": "",
+        "options": {
+            "getOptions": [
+                "() => {",
+                "    let options = {",
+                "        heyJibo: false,",
+                "        detectEnd: true,",
+                "        incremental: false,",
+                "        authenticateSpeaker: ''",
+                "    }",
+                "    return options;",
+                "}"
+            ],
+            "rule": "interview_me.rule",
+            "onResult": [
+                "(listener) => {",
+                "    listener.on('cloud', function(asrResult, speakerIds) {",
+                "      console.log(asrResult);",
+                "      //debugger;",
+                "    });",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "324cf3a9-dd56-4b26-9aa1-73690c903e4c": {
+        "id": "324cf3a9-dd56-4b26-9aa1-73690c903e4c",
+        "class": "TimeoutJs",
+        "name": "",
+        "options": {
+            "getTime": [
+                "() => {",
+                "    return 1000;",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "25d37f90-99cb-4cf0-8342-5637e15bdc0d": {
+        "id": "25d37f90-99cb-4cf0-8342-5637e15bdc0d",
+        "class": "TimeoutJs",
+        "name": "",
+        "options": {
+            "getTime": [
+                "() => {",
+                "    return 1000;",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "119a4278-e0e5-4041-9a94-c9d79ca4951d": {
+        "id": "119a4278-e0e5-4041-9a94-c9d79ca4951d",
+        "class": "TextToSpeech",
+        "name": "",
+        "options": {
+            "words": "What topic would you like to be interviewed on?",
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "f8109a5c-0221-41cc-8010-d243124c8195": {
+        "id": "f8109a5c-0221-41cc-8010-d243124c8195",
+        "class": "SucceedOnListen",
+        "name": "",
+        "options": {
+            "getOptions": [
+                "() => {",
+                "    let options = {",
+                "        heyJibo: false,",
+                "        detectEnd: false,",
+                "        incremental: false,",
+                "        authenticateSpeaker: ''",
+                "    }",
+                "    return options;",
+                "}"
+            ],
+            "rule": "interview_topics.rule",
+            "onResult": [
+                "(listener) => {",
+                "    listener.on('cloud', function(asrResult, speakerIds) {",
+                "      if(null != asrResult.NLParse.what){",
+                "        notepad.interviewTopic = asrResult.NLParse.what;",
+                "      } else{",
+                "        notepad.interviewTopic = 'unknown';",
+                "      }",
+                "      ",
+                "      // Handle multi word string cases",
+                "      if(notepad.interviewTopic == \"ds\"){",
+                "        notepad.interviewTopic = \"data structures\";",
+                "      }",
+                "      ",
+                "      console.log(notepad.interviewTopic);",
+                "    });",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "c6d06b5f-9e53-44ff-9c4a-efd586460f64": {
+        "id": "c6d06b5f-9e53-44ff-9c4a-efd586460f64",
+        "class": "Subtree",
+        "name": "",
+        "options": {
+            "behaviorPath": "idle.bt",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1,
+        "decorators": [
+            "f8109a5c-0221-41cc-8010-d243124c8195"
+        ]
+    },
+    "f01cbc67-9881-4ab5-8a97-9523420a09e3": {
+        "id": "f01cbc67-9881-4ab5-8a97-9523420a09e3",
+        "class": "TextToSpeechJs",
+        "name": "",
+        "options": {
+            "getWords": [
+                "(callback) => {",
+                "    var response = \"Ok, are you ready for your \" + notepad.interviewTopic + \" interview?\";",
+                "    //debugger;",
+                "    callback(response);",
+                "}"
+            ],
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "1cc85146-0d52-4ba9-81de-52700e2d2c2e": {
+        "id": "1cc85146-0d52-4ba9-81de-52700e2d2c2e",
+        "class": "SucceedOnListen",
+        "name": "",
+        "options": {
+            "getOptions": [
+                "() => {",
+                "    let options = {",
+                "        heyJibo: false,",
+                "        detectEnd: false,",
+                "        incremental: false,",
+                "        authenticateSpeaker: ''",
+                "    }",
+                "    return options;",
+                "}"
+            ],
+            "rule": "confirm.rule",
+            "onResult": [
+                "(listener) => {",
+                "    listener.on('cloud', function(asrResult, speakerIds) {",
+                "      if(null != asrResult.NLParse.what){",
+                "        notepad.continue = asrResult.NLParse.what;",
+                "      } else{",
+                "        notepad.continue = 'no';",
+                "      }",
+                "      console.log(notepad.continue);",
+                "    });",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "ac8c91ca-4ad1-4aa1-bf38-464ddef781de": {
+        "id": "ac8c91ca-4ad1-4aa1-bf38-464ddef781de",
+        "class": "Subtree",
+        "name": "",
+        "options": {
+            "behaviorPath": "idle.bt",
+            "getNotepad": [
+                "() => {",
+                "    return {};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1,
+        "decorators": [
+            "1cc85146-0d52-4ba9-81de-52700e2d2c2e"
+        ]
+    },
+    "01fe7d88-44cb-4e39-abeb-e69b020292a4": {
+        "id": "01fe7d88-44cb-4e39-abeb-e69b020292a4",
+        "class": "TextToSpeech",
+        "name": "",
+        "options": {
+            "words": "Ok great! Let me gather my questions.",
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "af3a4a96-6755-45fb-a52b-e376cb1abf26": {
+        "id": "af3a4a96-6755-45fb-a52b-e376cb1abf26",
+        "class": "TimeoutJs",
+        "name": "",
+        "options": {
+            "getTime": [
+                "() => {",
+                "    return 1000;",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "1f141b84-2aeb-4be2-a7c9-7ad123edb03e": {
+        "id": "1f141b84-2aeb-4be2-a7c9-7ad123edb03e",
+        "class": "Subtree",
+        "name": "",
+        "options": {
+            "behaviorPath": "ask_question_set",
+            "getNotepad": [
+                "() => {",
+                "    var interviewTopic = notepad.interviewTopic;",
+                "    return {interviewTopic:interviewTopic};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "  notepad.numTotal = this.blackboard.numTotal;",
+                "  notepad.numCorrect = this.blackboard.numCorrect;",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "a143a0fc-7763-4d62-a5d8-e297d43f1db0": {
+        "id": "a143a0fc-7763-4d62-a5d8-e297d43f1db0",
+        "class": "TextToSpeech",
+        "name": "",
+        "options": {
+            "words": "Thanks you for your time. Have a great day!",
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "4c7897a0-d82d-45ee-9f38-5063feb09bf4": {
+        "id": "4c7897a0-d82d-45ee-9f38-5063feb09bf4",
+        "class": "PlayAnimation",
+        "name": "",
+        "options": {
+            "animPath": "happydance.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "4c1b652a-ff1d-4a58-9a24-68c4a39bf818": {
+        "id": "4c1b652a-ff1d-4a58-9a24-68c4a39bf818",
+        "class": "TextToSpeechJs",
+        "name": "",
+        "options": {
+            "getWords": [
+                "(callback) => {",
+                "    var results = \"You got \" + notepad.numCorrect + \" out of the \" + notepad.numTotal + \" questions correct!\";",
+                "    callback(results);",
+                "}"
+            ],
+            "onWord": [
+                "(word) => {",
                 "}"
             ]
         },

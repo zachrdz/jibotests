@@ -1,0 +1,1 @@
+TopRule = $* (java){what='java'} | (sequel){what='sql'} | (data structures){what='ds'}$*;

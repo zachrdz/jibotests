@@ -1,0 +1,624 @@
+{
+    "1": {
+        "id": 1,
+        "class": "Sequence",
+        "name": "",
+        "asset-pack": "core",
+        "children": [
+            "49f306d2-1f93-477b-b937-2f4eb50ecbe7",
+            "3d817e51-a592-4807-8dc7-9689e5a50a24",
+            "0c5676b1-39b3-4b60-aa5b-ae4801e04552",
+            "14a93096-fd99-4d5d-84e7-a476a4538840",
+            "5b288e76-ed01-4729-90f3-43e4385ec503",
+            "5fd58dc1-252d-4c9e-9e82-a2093ed21490"
+        ],
+        "decorators": [],
+        "options": {}
+    },
+    "meta": {
+        "version": 1
+    },
+    "49f306d2-1f93-477b-b937-2f4eb50ecbe7": {
+        "id": "49f306d2-1f93-477b-b937-2f4eb50ecbe7",
+        "class": "ExecuteScript",
+        "name": "",
+        "options": {
+            "exec": [
+                "() => {",
+                "  var request = require('request');",
+                "",
+                "  var searchSetsUrl = \"https://api.quizlet.com/2.0/search/sets\"; ",
+                "  var clientId = \"7uZW4rbahR\";",
+                "  var query = notepad.interviewTopic + \" Interview\";",
+                "  var pageNum = 1;",
+                "  var perPage = 5;",
+                "  var propertiesObject = { client_id:clientId, q:query, page:pageNum, per_page:perPage};",
+                "",
+                "  request({url:searchSetsUrl, qs:propertiesObject}, function(err, response, body) {",
+                "    if(err) { window.alert(error); return; }",
+                "    var results = JSON.parse(response.body);",
+                "    notepad.testTitle = results.sets[0].description;",
+                "    notepad.setId = results.sets[0].id;  ",
+                "  });",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "5b288e76-ed01-4729-90f3-43e4385ec503": {
+        "id": "5b288e76-ed01-4729-90f3-43e4385ec503",
+        "class": "TextToSpeechJs",
+        "name": "",
+        "options": {
+            "getWords": [
+                "(callback) => {",
+                "    var response = \"Pulled up my \" + notepad.testTitle + \" question set. \";",
+                "    response += \"I've got \" + notepad.interviewQuestions.length + \" questions for you today.\";",
+                "    callback(response);",
+                "}"
+            ],
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "3d817e51-a592-4807-8dc7-9689e5a50a24": {
+        "id": "3d817e51-a592-4807-8dc7-9689e5a50a24",
+        "class": "TimeoutJs",
+        "name": "",
+        "options": {
+            "getTime": [
+                "() => {",
+                "    return 2000;",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "0c5676b1-39b3-4b60-aa5b-ae4801e04552": {
+        "id": "0c5676b1-39b3-4b60-aa5b-ae4801e04552",
+        "class": "ExecuteScript",
+        "name": "",
+        "options": {
+            "exec": [
+                "() => {",
+                "  var request = require('request');",
+                "  var clientId = \"7uZW4rbahR\";",
+                "  var getSetUrl = \"https://api.quizlet.com/2.0/sets/\" + notepad.setId;",
+                "  var propertiesObject = { client_id:clientId };",
+                "  ",
+                "  request({url:getSetUrl, qs:propertiesObject}, function(err, response, body) {",
+                "    if(err) { window.alert(error); return; }",
+                "    var results = JSON.parse(response.body);",
+                "    notepad.interviewQuestions = results.terms;",
+                "  });",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "14a93096-fd99-4d5d-84e7-a476a4538840": {
+        "id": "14a93096-fd99-4d5d-84e7-a476a4538840",
+        "class": "TimeoutJs",
+        "name": "",
+        "options": {
+            "getTime": [
+                "() => {",
+                "    return 2000;",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "82cd6930-8a1f-4995-af0c-5b73aaf2070e": {
+        "id": "82cd6930-8a1f-4995-af0c-5b73aaf2070e",
+        "class": "TimeoutJs",
+        "name": "",
+        "options": {
+            "getTime": [
+                "() => {",
+                "    return 2000;",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "5fd58dc1-252d-4c9e-9e82-a2093ed21490"
+    },
+    "63c0f05c-517b-4e7a-bedc-40293a37abef": {
+        "id": "63c0f05c-517b-4e7a-bedc-40293a37abef",
+        "class": "TextToSpeechJs",
+        "name": "",
+        "options": {
+            "getWords": [
+                "(callback) => {",
+                "    var response = notepad.interviewQuestions[notepad.currentTermIndex].term;",
+                "    callback(response);",
+                "}"
+            ],
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "5fd58dc1-252d-4c9e-9e82-a2093ed21490"
+    },
+    "5fd58dc1-252d-4c9e-9e82-a2093ed21490": {
+        "id": "5fd58dc1-252d-4c9e-9e82-a2093ed21490",
+        "class": "Sequence",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "parent": 1,
+        "decorators": [
+            "8647df0f-aa0f-4314-96d3-fec37dcedbd2"
+        ],
+        "children": [
+            "dd1f318e-38cd-4698-9abf-57b2e8a63efd",
+            "82cd6930-8a1f-4995-af0c-5b73aaf2070e",
+            "63c0f05c-517b-4e7a-bedc-40293a37abef",
+            "a608afe2-f71e-41c2-bf31-88102e115415"
+        ]
+    },
+    "8647df0f-aa0f-4314-96d3-fec37dcedbd2": {
+        "id": "8647df0f-aa0f-4314-96d3-fec37dcedbd2",
+        "class": "WhileCondition",
+        "name": "",
+        "options": {
+            "init": [
+                "() => {",
+                "    notepad.currentTermIndex = 0;",
+                "    this.blackboard.numTotal = notepad.interviewQuestions.length;",
+                "}"
+            ],
+            "conditional": [
+                "() => {",
+                "     if((notepad.interviewQuestions.length - 1) == notepad.currentTermIndex){",
+                "      return false;",
+                "    } else{",
+                "        notepad.currentTermIndex++;",
+                "    }",
+                "    return true;",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "a608afe2-f71e-41c2-bf31-88102e115415": {
+        "id": "a608afe2-f71e-41c2-bf31-88102e115415",
+        "class": "Sequence",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "parent": "5fd58dc1-252d-4c9e-9e82-a2093ed21490",
+        "decorators": [
+            "10ee5781-32d9-41ea-a47a-a71a0e41f2c9"
+        ],
+        "children": [
+            "fcb53e6b-8dc9-423b-ad5a-e5eeb3c6180c",
+            "e85873c3-b6e0-4379-a319-1ff52e0294b2"
+        ]
+    },
+    "10ee5781-32d9-41ea-a47a-a71a0e41f2c9": {
+        "id": "10ee5781-32d9-41ea-a47a-a71a0e41f2c9",
+        "class": "WhileCondition",
+        "name": "",
+        "options": {
+            "init": [
+                "() => {",
+                "  notepad.correctAnswerGiven = false;",
+                "  notepad.skip = false;",
+                "}"
+            ],
+            "conditional": [
+                "() => {",
+                "    if(notepad.correctAnswerGiven || notepad.skip){",
+                "      return false;",
+                "    }",
+                "    return true;",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "fcb53e6b-8dc9-423b-ad5a-e5eeb3c6180c": {
+        "id": "fcb53e6b-8dc9-423b-ad5a-e5eeb3c6180c",
+        "class": "Subtree",
+        "name": "",
+        "options": {
+            "behaviorPath": "idle.bt",
+            "getNotepad": [
+                "() => {",
+                "    return {correctAnswerGiven:notepad.correctAnswerGiven, incorrectAnswerGiven:notepad.incorrectAnswerGiven, skip:notepad.skip, answer:notepad.answer, repeat:notepad.repeat};",
+                "}"
+            ],
+            "onResult": [
+                "(treeResult) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "a608afe2-f71e-41c2-bf31-88102e115415",
+        "decorators": [
+            "12abcd48-4ad0-492d-b944-11276a565f7a"
+        ]
+    },
+    "12abcd48-4ad0-492d-b944-11276a565f7a": {
+        "id": "12abcd48-4ad0-492d-b944-11276a565f7a",
+        "class": "SucceedOnListenJs",
+        "name": "",
+        "options": {
+            "getOptions": [
+                "() => {",
+                "    let options = {",
+                "        heyJibo: false,",
+                "        detectEnd: false,",
+                "        incremental: false,",
+                "        authenticateSpeaker: ''",
+                "    }",
+                "    return options;",
+                "}"
+            ],
+            "getRule": [
+                "(callback) => {",
+                "    callback(\"TopRule = $* (correct answer given){what='correct'} | (skip){what='skip'} | (pass){what='skip'} | (tell me the answer){what='give'} | (can you repeat the question){what='repeat'} | (repeat){what='repeat'} $*;\");",
+                "}"
+            ],
+            "onResult": [
+                "(listener) => {",
+                "    listener.on('cloud', function(asrResult, speakerIds) {",
+                "      if(null != asrResult.NLParse.what){",
+                "          if(asrResult.NLParse.what == \"correct\"){",
+                "            notepad.correctAnswerGiven = true;",
+                "          } else if(asrResult.NLParse.what == \"skip\"){",
+                "            notepad.skip = true;",
+                "          } else if(asrResult.NLParse.what == \"give\"){",
+                "            notepad.answer = true;",
+                "          } else if(asrResult.NLParse.what == \"repeat\"){",
+                "            notepad.repeat = true;",
+                "          }",
+                "          notepad.incorrectAnswerGiven = false;",
+                "      } else {",
+                "        notepad.incorrectAnswerGiven = true;",
+                "        notepad.repeat = false;",
+                "        notepad.answer = false;",
+                "        notepad.skip = false;",
+                "        notepad.correctAnswerGiven = false;",
+                "      }",
+                "    });",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "a1b618fe-9b71-4de2-a9bb-4f98c7a8a16b": {
+        "id": "a1b618fe-9b71-4de2-a9bb-4f98c7a8a16b",
+        "class": "TextToSpeechJs",
+        "name": "",
+        "options": {
+            "getWords": [
+                "(callback) => {",
+                "    callback(notepad.interviewQuestions[notepad.currentTermIndex].definition);",
+                "}"
+            ],
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "29777478-3dfa-4ff1-b18c-8d89a9d87db2",
+        "decorators": []
+    },
+    "e85873c3-b6e0-4379-a319-1ff52e0294b2": {
+        "id": "e85873c3-b6e0-4379-a319-1ff52e0294b2",
+        "class": "Switch",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "parent": "a608afe2-f71e-41c2-bf31-88102e115415",
+        "children": [
+            "5ea4d491-c773-4032-b0b9-ed85634dea6f",
+            "e209e800-847a-4c88-9966-d4cc6401e3e9",
+            "29777478-3dfa-4ff1-b18c-8d89a9d87db2",
+            "428169eb-7929-4ab0-b074-2ea610fe0930"
+        ]
+    },
+    "d3826d45-d712-463f-a99a-66af67e3060a": {
+        "id": "d3826d45-d712-463f-a99a-66af67e3060a",
+        "class": "TextToSpeechJs",
+        "name": "",
+        "options": {
+            "getWords": [
+                "(callback) => {",
+                "  var response = notepad.interviewQuestions[notepad.currentTermIndex].term;",
+                "  callback(response);",
+                "}"
+            ],
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "428169eb-7929-4ab0-b074-2ea610fe0930",
+        "decorators": []
+    },
+    "dd1f318e-38cd-4698-9abf-57b2e8a63efd": {
+        "id": "dd1f318e-38cd-4698-9abf-57b2e8a63efd",
+        "class": "TextToSpeechJs",
+        "name": "",
+        "options": {
+            "getWords": [
+                "(callback) => {",
+                "    var response = \"Question\";",
+                "    callback(response);",
+                "}"
+            ],
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "5fd58dc1-252d-4c9e-9e82-a2093ed21490"
+    },
+    "e5d38caf-1897-4028-a97f-f059af770758": {
+        "id": "e5d38caf-1897-4028-a97f-f059af770758",
+        "class": "TextToSpeechJs",
+        "name": "",
+        "options": {
+            "getWords": [
+                "(callback) => {",
+                "    var rand = Math.floor((Math.random() * 4) + 1);",
+                "    var response = \"\";",
+                "    switch (rand){",
+                "        case 1 : response = \"That's not quite right. Try again.\";",
+                "          break;",
+                "        case 2 : response = \"Sorry, that's not correct. Common, you know this.\";",
+                "          break;",
+                "        case 3 : response = \"Hmm I don't believe that's right. Maybe you're thinking of something else?\";",
+                "          break;",
+                "        case 4 : response = \"Close, but no exactly. Would you like me to tell you the answer?\";",
+                "          break;",
+                "        default: response = \"That's not quite right. Try again.\";",
+                "          break;",
+                "    }",
+                "    callback(response);",
+                "}"
+            ],
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "e209e800-847a-4c88-9966-d4cc6401e3e9",
+        "decorators": []
+    },
+    "52943452-015c-4748-8846-6c2aa4c3ec13": {
+        "id": "52943452-015c-4748-8846-6c2aa4c3ec13",
+        "class": "TextToSpeechJs",
+        "name": "",
+        "options": {
+            "getWords": [
+                "(callback) => {",
+                "    var rand = Math.floor((Math.random() * 4) + 1);",
+                "    var response = \"\";",
+                "    switch (rand){",
+                "        case 1 : response = \"Awesome. That's correct!\";",
+                "          break;",
+                "        case 2 : response = \"Wow, you know your stuff.\";",
+                "          break;",
+                "        case 3 : response = \"Great answer, I'm impressed.\";",
+                "          break;",
+                "        case 4 : response = \"Correct. That's the answer I was looking for.\";",
+                "          break;",
+                "        default: response = \"You are correct!\";",
+                "          break;",
+                "    }",
+                "    ",
+                "    if(null == this.blackboard.numCorrect){",
+                "        this.blackboard.numCorrect = 1;",
+                "    } else{",
+                "        this.blackboard.numCorrect++;",
+                "    }",
+                "    ",
+                "    callback(response);",
+                "}"
+            ],
+            "onWord": [
+                "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "5ea4d491-c773-4032-b0b9-ed85634dea6f",
+        "decorators": []
+    },
+    "5ea4d491-c773-4032-b0b9-ed85634dea6f": {
+        "id": "5ea4d491-c773-4032-b0b9-ed85634dea6f",
+        "class": "Sequence",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "parent": "e85873c3-b6e0-4379-a319-1ff52e0294b2",
+        "children": [
+            "a7186109-4326-458c-a3c9-ed38b05abb18",
+            "52943452-015c-4748-8846-6c2aa4c3ec13"
+        ],
+        "decorators": [
+            "2bda023f-cbea-4a75-a515-d552ddfd3786"
+        ]
+    },
+    "2bda023f-cbea-4a75-a515-d552ddfd3786": {
+        "id": "2bda023f-cbea-4a75-a515-d552ddfd3786",
+        "class": "Case",
+        "name": "",
+        "options": {
+            "conditional": [
+                "() => {",
+                "  if(notepad.correctAnswerGiven){",
+                "      return true;",
+                "  }",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "a7186109-4326-458c-a3c9-ed38b05abb18": {
+        "id": "a7186109-4326-458c-a3c9-ed38b05abb18",
+        "class": "PlayAnimation",
+        "name": "",
+        "options": {
+            "animPath": "success.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "5ea4d491-c773-4032-b0b9-ed85634dea6f"
+    },
+    "e209e800-847a-4c88-9966-d4cc6401e3e9": {
+        "id": "e209e800-847a-4c88-9966-d4cc6401e3e9",
+        "class": "Sequence",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "parent": "e85873c3-b6e0-4379-a319-1ff52e0294b2",
+        "children": [
+            "0caafec4-0770-481d-9c59-e3ee8f8e39d4",
+            "e5d38caf-1897-4028-a97f-f059af770758"
+        ],
+        "decorators": [
+            "0e0a3b18-670a-49dd-95b9-50521cde21f8"
+        ]
+    },
+    "0e0a3b18-670a-49dd-95b9-50521cde21f8": {
+        "id": "0e0a3b18-670a-49dd-95b9-50521cde21f8",
+        "class": "Case",
+        "name": "",
+        "options": {
+            "conditional": [
+                "() => {",
+                "  if(notepad.incorrectAnswerGiven){",
+                "      return true;",
+                "  }",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "0caafec4-0770-481d-9c59-e3ee8f8e39d4": {
+        "id": "0caafec4-0770-481d-9c59-e3ee8f8e39d4",
+        "class": "PlayAnimation",
+        "name": "",
+        "options": {
+            "animPath": "failure.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "e209e800-847a-4c88-9966-d4cc6401e3e9"
+    },
+    "29777478-3dfa-4ff1-b18c-8d89a9d87db2": {
+        "id": "29777478-3dfa-4ff1-b18c-8d89a9d87db2",
+        "class": "Sequence",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "parent": "e85873c3-b6e0-4379-a319-1ff52e0294b2",
+        "children": [
+            "02e07d94-d7e1-4733-973a-01bfdaccf009",
+            "a1b618fe-9b71-4de2-a9bb-4f98c7a8a16b"
+        ],
+        "decorators": [
+            "2fa47891-03a0-4b05-9646-21c61d4c0e29"
+        ]
+    },
+    "2fa47891-03a0-4b05-9646-21c61d4c0e29": {
+        "id": "2fa47891-03a0-4b05-9646-21c61d4c0e29",
+        "class": "Case",
+        "name": "",
+        "options": {
+            "conditional": [
+                "() => {",
+                "  if(notepad.answer){",
+                "    notepad.correctAnswerGiven = true;",
+                "    return true;",
+                "  }",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "428169eb-7929-4ab0-b074-2ea610fe0930": {
+        "id": "428169eb-7929-4ab0-b074-2ea610fe0930",
+        "class": "Sequence",
+        "name": "",
+        "options": {},
+        "asset-pack": "core",
+        "parent": "e85873c3-b6e0-4379-a319-1ff52e0294b2",
+        "children": [
+            "010f0ce6-82de-4b22-b6e6-6f519c6a494b",
+            "d3826d45-d712-463f-a99a-66af67e3060a"
+        ],
+        "decorators": [
+            "9e231e1e-9ac7-475a-88c0-f5a9b2a1fa4b"
+        ]
+    },
+    "9e231e1e-9ac7-475a-88c0-f5a9b2a1fa4b": {
+        "id": "9e231e1e-9ac7-475a-88c0-f5a9b2a1fa4b",
+        "class": "Case",
+        "name": "",
+        "options": {
+            "conditional": [
+                "() => {",
+                "  if(notepad.repeat){",
+                "    notepad.repeat = false;",
+                "    return true;",
+                "  }",
+                "}"
+            ]
+        },
+        "asset-pack": "core"
+    },
+    "010f0ce6-82de-4b22-b6e6-6f519c6a494b": {
+        "id": "010f0ce6-82de-4b22-b6e6-6f519c6a494b",
+        "class": "PlayAnimation",
+        "name": "",
+        "options": {
+            "animPath": "question.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "428169eb-7929-4ab0-b074-2ea610fe0930"
+    },
+    "02e07d94-d7e1-4733-973a-01bfdaccf009": {
+        "id": "02e07d94-d7e1-4733-973a-01bfdaccf009",
+        "class": "PlayAnimation",
+        "name": "",
+        "options": {
+            "animPath": "lightbulb.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "29777478-3dfa-4ff1-b18c-8d89a9d87db2"
+    }
+}
