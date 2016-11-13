@@ -20,6 +20,7 @@
             "1f141b84-2aeb-4be2-a7c9-7ad123edb03e",
             "4c7897a0-d82d-45ee-9f38-5063feb09bf4",
             "4c1b652a-ff1d-4a58-9a24-68c4a39bf818",
+            "7600b3e3-277d-4bdf-96c9-9368d9e67330",
             "201b3ecf-2be2-4450-89d8-5a4a45833906"
         ],
         "decorators": [],
@@ -364,6 +365,7 @@
                 "(treeResult) => {",
                 "  notepad.numTotal = this.blackboard.numTotal;",
                 "  notepad.numCorrect = this.blackboard.numCorrect;",
+                "  notepad.testUrl = this.blackboard.testUrl;",
                 "}"
             ]
         },
@@ -422,6 +424,40 @@
             ],
             "onWord": [
                 "(word) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": 1
+    },
+    "7600b3e3-277d-4bdf-96c9-9368d9e67330": {
+        "id": "7600b3e3-277d-4bdf-96c9-9368d9e67330",
+        "class": "ExecuteScript",
+        "name": "",
+        "options": {
+            "exec": [
+                "() => {",
+                "  var nodemailer = require('nodemailer');",
+                " ",
+                "  // create reusable transporter object using the default SMTP transport ",
+                "  var transporter = nodemailer.createTransport('smtps://jibohacks%40gmail.com:dellwindows@smtp.gmail.com');",
+                "  ",
+                "var results = \"You got \" + notepad.numCorrect + \" out of the \" + notepad.numTotal + \" questions correct!\";",
+                "// setup e-mail data with unicode symbols ",
+                "var mailOptions = {",
+                "    from: '\"Jibo the Interviewer 👥\" <jibohacks@gmail.com>', // sender address ",
+                "    to: 'zachrdz@gmail.com, samanthacampos90@gmail.com', // list of receivers ",
+                "    subject: 'Interview Results ✔', // Subject line ",
+                "    text: results + \" Quizlet Link: http://quizlet.com\" + notepad.testUrl, // plaintext body ",
+                "};",
+                " ",
+                "// send mail with defined transport object ",
+                "transporter.sendMail(mailOptions, function(error, info){",
+                "    if(error){",
+                "        return console.log(error);",
+                "    }",
+                "    console.log('Message sent: ' + info.response);",
+                "});",
                 "}"
             ]
         },

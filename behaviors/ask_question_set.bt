@@ -41,9 +41,12 @@
                 "  request({url:searchSetsUrl, qs:propertiesObject}, function(err, response, body) {",
                 "    if(err) { window.alert(error); return; }",
                 "    var results = JSON.parse(response.body);",
+                "    notepad.url = results.sets[0].url;",
                 "    notepad.testTitle = results.sets[0].description;",
                 "    notepad.setId = results.sets[0].id;  ",
                 "  });",
+                "  ",
+                "  this.blackboard.testUrl = notepad.url;",
                 "}"
             ]
         },
