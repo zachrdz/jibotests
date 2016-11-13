@@ -26,6 +26,10 @@
             "exec": [
                 "() => {",
                 "  var request = require('request');",
+                "  ",
+                "  if(notepad.interviewTopic == \"object oriented programming\"){",
+                "      notepad.interviewTopic = \"object oriented\";",
+                "  }",
                 "",
                 "  var searchSetsUrl = \"https://api.quizlet.com/2.0/search/sets\"; ",
                 "  var clientId = \"7uZW4rbahR\";",
@@ -148,7 +152,7 @@
             ]
         },
         "asset-pack": "core",
-        "parent": "5fd58dc1-252d-4c9e-9e82-a2093ed21490"
+        "parent": "2dda9176-afd1-4cf8-a34a-443ede598466"
     },
     "5fd58dc1-252d-4c9e-9e82-a2093ed21490": {
         "id": "5fd58dc1-252d-4c9e-9e82-a2093ed21490",
@@ -163,7 +167,7 @@
         "children": [
             "dd1f318e-38cd-4698-9abf-57b2e8a63efd",
             "82cd6930-8a1f-4995-af0c-5b73aaf2070e",
-            "63c0f05c-517b-4e7a-bedc-40293a37abef",
+            "2dda9176-afd1-4cf8-a34a-443ede598466",
             "a608afe2-f71e-41c2-bf31-88102e115415"
         ]
     },
@@ -219,7 +223,10 @@
             ],
             "conditional": [
                 "() => {",
-                "    if(notepad.correctAnswerGiven || notepad.skip){",
+                "    if(notepad.correctAnswerGiven || notepad.skip || notepad.answer){",
+                "      notepad.correctAnswerGiven = false;",
+                "      notepad.skip = false;",
+                "      notepad.answer = false;",
                 "      return false;",
                 "    }",
                 "    return true;",
@@ -292,6 +299,19 @@
                 "        notepad.skip = false;",
                 "        notepad.correctAnswerGiven = false;",
                 "      }",
+                "      ",
+                "      if(null != asrResult.Input){",
+                "        var given = asrResult.Input.toUpperCase();",
+                "        var correct = notepad.interviewQuestions[notepad.currentTermIndex].definition.toUpperCase();",
+                "",
+                "        if( given === correct ){",
+                "          notepad.correctAnswerGiven = true;",
+                "          notepad.incorrectAnswerGiven = false;",
+                "          notepad.repeat = false;",
+                "          notepad.answer = false;",
+                "          notepad.skip = false;",
+                "        }",
+                "      }",
                 "    });",
                 "}"
             ]
@@ -314,7 +334,7 @@
             ]
         },
         "asset-pack": "core",
-        "parent": "29777478-3dfa-4ff1-b18c-8d89a9d87db2",
+        "parent": "4bd9b79f-980a-45d2-ac28-0a4129a9c477",
         "decorators": []
     },
     "e85873c3-b6e0-4379-a319-1ff52e0294b2": {
@@ -348,7 +368,7 @@
             ]
         },
         "asset-pack": "core",
-        "parent": "428169eb-7929-4ab0-b074-2ea610fe0930",
+        "parent": "5ff9aaf6-72d3-4483-be9a-962f0a84e1d0",
         "decorators": []
     },
     "dd1f318e-38cd-4698-9abf-57b2e8a63efd": {
@@ -358,7 +378,7 @@
         "options": {
             "getWords": [
                 "(callback) => {",
-                "    var response = \"Question\";",
+                "    var response = \"Question \" + (notepad.currentTermIndex + 1);",
                 "    callback(response);",
                 "}"
             ],
@@ -539,8 +559,7 @@
         "asset-pack": "core",
         "parent": "e85873c3-b6e0-4379-a319-1ff52e0294b2",
         "children": [
-            "02e07d94-d7e1-4733-973a-01bfdaccf009",
-            "a1b618fe-9b71-4de2-a9bb-4f98c7a8a16b"
+            "4bd9b79f-980a-45d2-ac28-0a4129a9c477"
         ],
         "decorators": [
             "2fa47891-03a0-4b05-9646-21c61d4c0e29"
@@ -554,7 +573,7 @@
             "conditional": [
                 "() => {",
                 "  if(notepad.answer){",
-                "    notepad.correctAnswerGiven = true;",
+                "    //notepad.correctAnswerGiven = true;",
                 "    return true;",
                 "  }",
                 "}"
@@ -570,8 +589,7 @@
         "asset-pack": "core",
         "parent": "e85873c3-b6e0-4379-a319-1ff52e0294b2",
         "children": [
-            "010f0ce6-82de-4b22-b6e6-6f519c6a494b",
-            "d3826d45-d712-463f-a99a-66af67e3060a"
+            "5ff9aaf6-72d3-4483-be9a-962f0a84e1d0"
         ],
         "decorators": [
             "9e231e1e-9ac7-475a-88c0-f5a9b2a1fa4b"
@@ -605,7 +623,7 @@
             ]
         },
         "asset-pack": "core",
-        "parent": "428169eb-7929-4ab0-b074-2ea610fe0930"
+        "parent": "5ff9aaf6-72d3-4483-be9a-962f0a84e1d0"
     },
     "02e07d94-d7e1-4733-973a-01bfdaccf009": {
         "id": "02e07d94-d7e1-4733-973a-01bfdaccf009",
@@ -619,6 +637,62 @@
             ]
         },
         "asset-pack": "core",
-        "parent": "29777478-3dfa-4ff1-b18c-8d89a9d87db2"
+        "parent": "4bd9b79f-980a-45d2-ac28-0a4129a9c477"
+    },
+    "2dda9176-afd1-4cf8-a34a-443ede598466": {
+        "id": "2dda9176-afd1-4cf8-a34a-443ede598466",
+        "class": "Parallel",
+        "name": "",
+        "options": {
+            "succeedOnOne": false
+        },
+        "asset-pack": "core",
+        "parent": "5fd58dc1-252d-4c9e-9e82-a2093ed21490",
+        "children": [
+            "62a7b53a-5d25-4f95-a0d9-b42f363acf1f",
+            "63c0f05c-517b-4e7a-bedc-40293a37abef"
+        ]
+    },
+    "62a7b53a-5d25-4f95-a0d9-b42f363acf1f": {
+        "id": "62a7b53a-5d25-4f95-a0d9-b42f363acf1f",
+        "class": "PlayAnimation",
+        "name": "",
+        "options": {
+            "animPath": "question.keys",
+            "config": [
+                "(animation) => {",
+                "}"
+            ]
+        },
+        "asset-pack": "core",
+        "parent": "2dda9176-afd1-4cf8-a34a-443ede598466"
+    },
+    "4bd9b79f-980a-45d2-ac28-0a4129a9c477": {
+        "id": "4bd9b79f-980a-45d2-ac28-0a4129a9c477",
+        "class": "Parallel",
+        "name": "",
+        "options": {
+            "succeedOnOne": false
+        },
+        "asset-pack": "core",
+        "parent": "29777478-3dfa-4ff1-b18c-8d89a9d87db2",
+        "children": [
+            "02e07d94-d7e1-4733-973a-01bfdaccf009",
+            "a1b618fe-9b71-4de2-a9bb-4f98c7a8a16b"
+        ]
+    },
+    "5ff9aaf6-72d3-4483-be9a-962f0a84e1d0": {
+        "id": "5ff9aaf6-72d3-4483-be9a-962f0a84e1d0",
+        "class": "Parallel",
+        "name": "",
+        "options": {
+            "succeedOnOne": false
+        },
+        "asset-pack": "core",
+        "parent": "428169eb-7929-4ab0-b074-2ea610fe0930",
+        "children": [
+            "d3826d45-d712-463f-a99a-66af67e3060a",
+            "010f0ce6-82de-4b22-b6e6-6f519c6a494b"
+        ]
     }
 }

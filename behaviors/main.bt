@@ -33,7 +33,7 @@
         "class": "TextToSpeech",
         "name": "",
         "options": {
-            "words": "Hello there!",
+            "words": "Hello there! What can I help you with today?",
             "onWord": [
                 "(word) => {",
                 "}"
@@ -209,7 +209,7 @@
                 "      if(null != asrResult.NLParse.what){",
                 "        notepad.interviewTopic = asrResult.NLParse.what;",
                 "      } else{",
-                "        notepad.interviewTopic = 'unknown';",
+                "        notepad.interviewTopic = 'object oriented programming';",
                 "      }",
                 "      ",
                 "      // Handle multi word string cases",

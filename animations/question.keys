@@ -1,6 +1,6 @@
 {
     "framerate": 30,
-    "duration": 90,
+    "duration": 96,
     "layers": [
         {
             "id": "5b631fd526fc49068920fc50cb5c10d6",
@@ -480,6 +480,17 @@
                         }
                     },
                     "time": 89
+                },
+                {
+                    "value": {
+                        "Texture": "animations/textures/white-eye.png",
+                        "Color": {
+                            "r": 255,
+                            "g": 255,
+                            "b": 255
+                        }
+                    },
+                    "time": 94
                 }
             ]
         }
