@@ -319,6 +319,23 @@
                     "time": 60
                 }
             ]
+        },
+        {
+            "id": "d2632993eb78464ead7a5f5ca0e0ca40",
+            "name": "Audio Event",
+            "type": "Audio Event",
+            "visible": true,
+            "locked": false,
+            "keyframes": [
+                {
+                    "value": {
+                        "AudioEvent": {
+                            "file": "FX_Disgusted_02.mp3"
+                        }
+                    },
+                    "time": 20
+                }
+            ]
         }
     ],
     "version": "0.6.0",
