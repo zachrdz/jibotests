@@ -34,3 +34,13 @@ Incorporate video recording to record your interaction with Jibo when being inte
 
 ## Built With
 JiboSDK, NodeJS, Javascript, HTML, Quizlet API
+
+## Developer Notes
+Current queries for interview topics are limited to the following for demo purposes only.
+* SQL (Must say "sequel")
+* Data structures
+* Object oriented programming
+* Java
+
+To enable unrestricted queries, please adjust the code in the .bt file to remove the filter/restriction.
+You will then be able to query/be interviewed on any topic you say.
