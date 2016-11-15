@@ -47,3 +47,14 @@ Current queries for interview topics are limited to the following for demo purpo
 
 To enable unrestricted queries, please adjust the code in the .bt file to remove the filter/restriction.
 You will then be able to query/be interviewed on any topic you say.
+
+### Startup Commands
+* "hey jibo"
+* "interview me"
+* "yes"
+
+### Question Response Commands
+* "skip" or "pass" (Skips to the next question)
+* "tell me the answer" (Gives you the answer to the current question)
+* "repeat" (Repeats the question to you)
+* "correct answer given" (Makes your answer correct, usefuel when NLP matching isn't accurate enough)
