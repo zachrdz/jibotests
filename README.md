@@ -2,6 +2,9 @@
 
 Jibo assisted interviewing for potential candidates to review material and be better prepared for their actual interview. They can interact with Jibo throughout the review process and use their results to assist them in getting the job they desire.
 
+# Demo
+[Video of Jibo simulator in action running our project.](https://youtu.be/hLXrqcb00Mg)
+
 ## Inspiration
 Our project takes aim at helping anyone searching for a job or even just studying for an upcoming test or certification. We know how tedious the process of reviewing material can be, as well as how boring it can be staring at a computer screen for hours hoping to remember the material you need to know. With Jibo, you can have someone to study with who basically knows everything you need to know.
 
