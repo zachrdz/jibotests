@@ -46,7 +46,6 @@
                 "    notepad.setId = results.sets[0].id;  ",
                 "  });",
                 "  ",
-                "  this.blackboard.testUrl = notepad.url;",
                 "}"
             ]
         },
@@ -94,10 +93,14 @@
         "options": {
             "exec": [
                 "() => {",
+                "  ",
                 "  var request = require('request');",
                 "  var clientId = \"7uZW4rbahR\";",
                 "  var getSetUrl = \"https://api.quizlet.com/2.0/sets/\" + notepad.setId;",
                 "  var propertiesObject = { client_id:clientId };",
+                "  ",
+                "  //Set quizlet url globally from previous api call",
+                "  this.blackboard.testUrl = notepad.url;",
                 "  ",
                 "  request({url:getSetUrl, qs:propertiesObject}, function(err, response, body) {",
                 "    if(err) { window.alert(error); return; }",
